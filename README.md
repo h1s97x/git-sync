@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: h1s97x/git-sync@v1
+      - uses: h1s97x/git-sync@v0.0.1
         with:
           target_url: https://git.example.com/<org>/<repo>.git
           auth_type: https
@@ -68,7 +68,7 @@ GitHub 会把 `with:` 参数注入为 `INPUT_*`，入口脚本自动映射为 `P
 
 在 GitHub Actions 中不指定 `branch` 时，脚本会先补齐 `origin` 的所有远程分支引用，再以 `refs/remotes/origin/*:refs/heads/*` 推送，确保全分支镜像生效。
 
-发布到 Marketplace：推送 `v1` 这类版本 tag，创建 Release 时勾选 "Publish to GitHub Marketplace"。`action.yml` 默认 `image: Dockerfile`，每次运行构建镜像；若要提速，可先发布镜像再把 `image` 改为 `docker://<registry>/<image>:<tag>`，并保持镜像 tag 与 action tag 一致。
+发布到 Marketplace：推送 `v0.0.1` 这类版本 tag，创建 Release 时勾选 "Publish to GitHub Marketplace"。`action.yml` 默认 `image: Dockerfile`，每次运行构建镜像；若要提速，可先发布镜像再把 `image` 改为 `docker://<registry>/<image>:<tag>`，并保持镜像 tag 与 action tag 一致。
 
 ### 定时拉取（pull 模式）
 
@@ -87,7 +87,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: h1s97x/git-sync@v1
+      - uses: h1s97x/git-sync@v0.0.1
         with:
           target_url: https://git.example.com/<org>/<repo>.git
           auth_type: https

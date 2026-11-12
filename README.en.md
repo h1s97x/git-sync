@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: h1s97x/git-sync@v1
+      - uses: h1s97x/git-sync@v0.0.1
         with:
           target_url: https://git.example.com/<org>/<repo>.git
           auth_type: https
@@ -68,7 +68,7 @@ GitHub injects every `with:` key as `INPUT_*`; the entrypoint maps those to `PLU
 
 When no `branch` is given in GitHub Actions, the entrypoint first fetches all remote branch refs from `origin` and pushes with `refs/remotes/origin/*:refs/heads/*`, so mirroring all branches actually works.
 
-To publish on the Marketplace, push a version tag such as `v1` and check "Publish to GitHub Marketplace" when creating the Release. `action.yml` uses `image: Dockerfile`, which builds the image on every run; to speed this up, publish the image first and switch `image` to `docker://<registry>/<image>:<tag>`, keeping the image tag aligned with the action tag.
+To publish on the Marketplace, push a version tag such as `v0.0.1` and check "Publish to GitHub Marketplace" when creating the Release. `action.yml` uses `image: Dockerfile`, which builds the image on every run; to speed this up, publish the image first and switch `image` to `docker://<registry>/<image>:<tag>`, keeping the image tag aligned with the action tag.
 
 ### Scheduled pull
 
@@ -87,7 +87,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: h1s97x/git-sync@v1
+      - uses: h1s97x/git-sync@v0.0.1
         with:
           target_url: https://git.example.com/<org>/<repo>.git
           auth_type: https
