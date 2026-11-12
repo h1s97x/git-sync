@@ -1,0 +1,57 @@
+name: 'Git Sync'
+description: 'Mirror the current repository to another Git host from a Docker container'
+author: 'h1s97x'
+branding:
+  icon: 'git-branch'
+  color: 'blue'
+
+inputs:
+  target_url:
+    description: 'Target repository URL, e.g. https://git.example.com/<org>/<repo>.git'
+    required: true
+  auth_type:
+    description: 'Authentication type: https or ssh'
+    required: false
+    default: 'https'
+  username:
+    description: 'Username for HTTPS auth'
+    required: false
+  password:
+    description: 'Password or access token for HTTPS auth. Always pass a CI secret.'
+    required: false
+  ssh_key:
+    description: 'SSH private key content when auth_type is ssh'
+    required: false
+  branch:
+    description: 'Sync only this branch. Leave empty to sync all branches.'
+    required: false
+  force:
+    description: 'Force push. Must be true or false.'
+    required: false
+    default: 'false'
+  push_tags:
+    description: 'Push tags to the target repository'
+    required: false
+    default: 'false'
+  sync_mode:
+    description: 'push (mirror), rebase (keep target-only files), or pull (fetch into origin)'
+    required: false
+    default: 'push'
+  git_user:
+    description: 'Git committer name'
+    required: false
+  git_email:
+    description: 'Git committer email'
+    required: false
+  git_host:
+    description: 'Custom Git host to add to SSH known_hosts'
+    required: false
+  fetch_options:
+    description: 'Extra options passed to git fetch, e.g. --depth=1'
+    required: false
+
+# To skip the per-run image build, publish the image first and replace the
+# value below with docker://<registry>/<image>:<tag>, kept in sync with the action tag.
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
